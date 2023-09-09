@@ -8,7 +8,7 @@
     "email": "sales@erpzero.com",
     "sequence": 0,
     'license': 'OPL-1',
-    'live_test_url': 'https://youtu.be/WoXDxlmPfig',
+    'live_test_url': 'https://youtu.be/q2iUCSC6Ick',
     'summary': 'Invoice, Bill and Journal Entry Manual Creation Restricted',
     "description": 'Invoice, Bill and Journal Entry Manual Creation Restricted',
     'depends': ['base','account'],
