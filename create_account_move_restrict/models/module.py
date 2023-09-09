@@ -16,26 +16,16 @@ from odoo.exceptions import UserError
 class AccountMove(models.Model):
     _inherit = 'account.move'
    
-    @api.model
-    def default_get(self, fields):
-        res = super(AccountMove, self).default_get(fields)
-        user_invoice = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_invoice_restrict').id)])
-        user_bill = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_bill_restrict').id)])
-        user_entry = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_entry_restrict').id)])
-        if self.move_type == 'out_invoice':
-            if user_invoice:
-                return user_invoice
-            else:
+    @api.onchange('source_id','move_type')
+    def onchange_source_id(self):
+        for move in self:
+            user_invoice = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_invoice_restrict').id)])
+            user_bill = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_bill_restrict').id)])
+            user_entry = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_entry_restrict').id)])
+            if not user_invoice and not move.source_id and move.move_type =='out_invoice':
                 raise UserError(_('Not Allowed To Create Manual Invoice'))
-        if self.move_type == 'in_invoice':
-            if user_bill:
-                return user_bill
-            else:
+            if not user_invoice and not move.source_id and move.move_type =='in_invoice':
                 raise UserError(_('Not Allowed To Create Manual Bill'))
-        if self.move_type == 'entry':
-            if user_entry:
-                return user_entry
-            else:
+            if not user_invoice and not move.source_id and move.move_type =='entry':
                 raise UserError(_('Not Allowed To Create Manual Journal Entry'))
 
-        return res
