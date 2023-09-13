@@ -1,5 +1,5 @@
 {
-    'name': 'Create Account Move Restric',
+    'name': 'Create Account Move Restrict',
     'version': '6.1.0',
     'category': 'Accounting',
     "author": 'Zero Systems',
