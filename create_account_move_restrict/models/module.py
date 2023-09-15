@@ -24,8 +24,8 @@ class AccountMove(models.Model):
             user_entry = self.env['res.users'].search([('id', '=', self.env.user.id),('groups_id', 'in', self.env.ref('create_account_move_restrict.create_entry_restrict').id)])
             if not user_invoice and not move.invoice_origin and move.move_type =='out_invoice':
                 raise UserError(_('Not Allowed To Create Manual Invoice'))
-            if not user_invoice and not move.invoice_origin and move.move_type =='in_invoice':
+            if not user_bill and not move.invoice_origin and move.move_type =='in_invoice':
                 raise UserError(_('Not Allowed To Create Manual Bill'))
-            if not user_invoice and not move.invoice_origin and move.move_type =='entry':
+            if not user_entry and not move.invoice_origin and move.move_type =='entry':
                 raise UserError(_('Not Allowed To Create Manual Journal Entry'))
 
