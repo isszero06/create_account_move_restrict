@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+#################################################################################
+# Author      : Zero For Information Systems (<www.erpzero.com>)
+# Copyright(c): 2016-Zero For Information Systems
+# All Rights Reserved.
+#Zerosystems #odoo #erp
+# This program is copyright property of the author mentioned above.
+# You can`t redistribute it and/or modify it.
+#
+#################################################################################
 {
     'name': 'Create Account Move Restrict',
     'version': '6.1.0',
@@ -22,6 +32,5 @@
     'auto_install': False,
     "application": True,
     'images': ['static/description/not_allwoed.png'],
-    'pre_init_check_vers': 'pre_init_check_vers',
 }
 
