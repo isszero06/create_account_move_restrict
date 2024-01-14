@@ -10,7 +10,7 @@
 #################################################################################
 {
     'name': 'Create Account Move Restrict',
-    'version': '6.1.0',
+    'version': '7.1.0',
     'category': 'Accounting',
     "author": 'Zero Systems',
     "company": 'Zero for Information Systems',
